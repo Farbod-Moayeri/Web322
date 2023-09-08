@@ -1,0 +1,14 @@
+{
+  "name": "a1",
+  "version": "1.0.0",
+  "description": "First assignment for Web322.",
+  "main": "a1.js",
+  "scripts": {
+    "dev": "nodemon a1.js"
+  },
+  "author": "Farbod Moayeri",
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
