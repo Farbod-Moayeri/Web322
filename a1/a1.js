@@ -1,10 +1,20 @@
+/*********************************************************************************
+* WEB322 – Assignment 1
+* I declare that this assignment is my own work in accordance with Seneca Academic Policy. 
+* No part of this assignment has been copied manually or electronically from any other source
+* (including web sites) or distributed to other students.
+* 
+* Name: Farbod Moayeri Student ID: 134395227 Date: 2023-09-11
+*
+********************************************************************************/
+
 const readline = require('readline');
 const fs = require('fs');
 const path = require('path');
 
 const rl = readline.createInterface(process.stdin, process.stdout);
 
-rl.question("Do you wish to process a File (f) or directory (d):  ", function(choice) {
+rl.question("Do you wish to process a File (f) or Directory (d):  ", function(choice) {
     if(choice.toLocaleLowerCase() == "f") {
         fs.readFile('./post.txt', (err, fileContents) => {
             if(err) {
@@ -23,9 +33,9 @@ rl.question("Do you wish to process a File (f) or directory (d):  ", function(ch
                     }
                 }
                 console.log(`Longest Word: ${fileContentsArray[savedIndex]}`);
+                
             }
         })
-        rl.close();
     } else if (choice.toLocaleLowerCase() == "d") {
         fs.readdir('./files', (err, fileContents) => {
             if(err) {
@@ -33,10 +43,10 @@ rl.question("Do you wish to process a File (f) or directory (d):  ", function(ch
             } else {
                 console.log(`Files (reverse alphabetical order): ${fileContents.reverse()}`);
                 for(let i = 0; i < fileContents.length; i++) {
-                    fs.readFile(path.join(__dirname, 'files' ,fileContents[i]), (err, textFile) => {
+                    fs.readFile(path.join(__dirname, 'files' , fileContents[i]), (err, textFile) => {
                         if(err)
                         {
-                            console.log(err.message)
+                            console.log(err.message);
                         } else {
                             console.log(`${fileContents[i]}: ${Buffer.byteLength(textFile, 'uft8')}`);
                         }
@@ -49,4 +59,5 @@ rl.question("Do you wish to process a File (f) or directory (d):  ", function(ch
     } else {
         console.log("Invalid Selection.");
     }
+    rl.close();
 })
