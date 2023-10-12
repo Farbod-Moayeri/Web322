@@ -1,12 +1,20 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [`./views/*.html`], // all .html files
+  purge: {
+    content: [
+      './views/**/*.html',
+      // you might also need to watch your js files if you use tailwind classes in them
+      './src/**/*.js',
+    ]
+  },
   daisyui: {
     themes: ['cupcake'],
   },
   theme: {
     extend: {},
   },
-  plugins: [require('@tailwindcss/typography'), require('daisyui')],
+  plugins: [
+    require('@tailwindcss/typography'),
+    require('daisyui'),
+  ],
 }
-

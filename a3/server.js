@@ -12,6 +12,7 @@
 
 const legoData = require("./modules/legoSets");
 const express = require('express'); 
+const path = require('path');
 const app = express(); 
 const HTTP_PORT = process.env.PORT || 8080; 
 
@@ -23,29 +24,50 @@ legoData.initialize()
         console.log(err.message);
     });
 
-app.get('/', (req, res) => {
-    res.send('Assignment 2: Farbod Moayeri - 134395227')
+app.use(express.static('public'));
+
+app.get(['/', '/home', '/home.html'], (req, res) => {
+    try {
+        res.sendFile(path.join(__dirname, '/views/home.html'));
+    } catch (err) {
+        res.status(404).send(err);
+    }
+    
 });
-app.get('/lego/sets', (req, res) => {
-    legoData.getAllSets()
+app.get(['/about', '/about.html'], (req, res) => {
+    try {
+        res.sendFile(path.join(__dirname, '/views/about.html'));
+    } catch (err) {
+        res.status(404).send(err);
+    }
+    
+});
+app.get('/lego/sets/', (req, res) => {
+
+    const theme = req.query.theme;
+
+    if(theme)
+    {
+        legoData.getSetsByTheme(theme)
+            .then(data => {
+                res.send(data);
+            })
+            .catch((err) => {
+                res.status(404).send(err.message);
+            })
+    } else {
+        legoData.getAllSets()
         .then(data => {
             res.send(data);
         })
         .catch((err) => {
-            res.send(err.message);
+            res.status(404).send(err.message);
         });
+    }
 });
-app.get('/lego/sets/num-demo', (req, res) => {
-    legoData.getSetByNum(371)
-        .then(data => {
-            res.send(data);
-        })
-        .catch((err) => {
-            res.send(err.message);
-        });
-});
-app.get('/lego/sets/theme-demo', (req, res) => {
-    legoData.getSetsByTheme('technic')
+app.get('/lego/sets/:num?', (req, res) => {
+    const num = req.params.num
+    legoData.getSetByNum(num)
         .then(data => {
             res.send(data);
         })
