@@ -4,46 +4,43 @@
         <meta charset="utf-8">
         <meta name="author" content="Farbod Moayeri">
         <link rel="stylesheet" href="/css/main.css" />
-        <link rel="stylesheet" href="/css/tailwind.css" />
+        <script src="/js/legoSets.js"></script>
         <title>Lego Collection</title>
     </head>
 
-    <body>
+    <body class="grid grid-rows-[auto,1fr,auto] min-h-screen">
         <header>
-            <nav class="navbar bg-base-100">
-                <a href="/" class="logo">Lego Collection</a>
-                <div class="menu-toggle" id="mobile-menu">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
-                <ul class="nav-list">
-                    <li><a href="/about" class="nav-link">About</a></li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Theme</a>
-                        <div class="dropdown">
-                            <a href="/lego/sets?theme=City">City</a>
-                            <a href="/lego/sets?theme=StarWars">Star Wars</a>
-                            <a href="/lego/sets?theme=Ninjago">Ninjago</a>
+            <div class="bg-gray-800 text-white p-4">
+                <nav class="container mx-auto flex justify-between">
+                    <a href="/" class="text-2xl font-bold">Lego Collection</a>
+                    <div class="space-x-4">
+                        <a href="/about" class="hover:text-gray-400">About</a>
+                        <div class="dropdown dropdown-hover">
+                            <button class="btn hover:text-gray-400 focus:text-gray-400">Themes</button>
+                            <div class="dropdown-content mt-2 shadow-lg w-70 bg-gray-800">
+                                <ul class="space-y-2">
+                                    <li><a href="/lego/sets?theme=Technic" class="block px-4 py-2 hover:bg-gray-700">Technic</a></li>
+                                    <li><a href="/lego/sets?theme=StarWars" class="block px-4 py-2 hover:bg-gray-700">Star Wars</a></li>
+                                    <li><a href="/lego/sets?theme=Arctic" class="block px-4 py-2 hover:bg-gray-700">Arctic</a></li>
+                                </ul>
+                            </div>
                         </div>
-                    </li>
-                </ul>
-            </nav>
+                    </div>
+                </nav>
+            </div>
         </header>
 
         <main>    
             <section class="hero bg-blue-500 text-white p-10 text-center">
                 <h1 class="text-4xl mb-4">Explore Our Lego Collection</h1>
-                <p class="mb-6">Discover sets and recreate your imaginary world!</p>
-                <a href="/lego/sets" class="btn bg-white text-blue-500 py-2 px-4 rounded">Browse Sets</a>
             </section>
 
             <section class="grid grid-cols-1 md:grid-cols-3 gap-8 p-10">
                 <div class="card bg-white p-6 rounded-lg shadow-md">
                     <img src="your_img_url1.jpg" alt="Lego Set 1" class="w-full h-64 object-cover mb-4 rounded">
-                    <h2 class="text-2xl mb-2">Set Name 1</h2>
+                    <h2 class="text-2xl mb-2">Technic</h2>
                     <p class="mb-4">A brief blurb about Lego Set 1. Details and history of this set, or any intriguing aspects.</p>
-                    <a href="/lego/sets/001-1" class="btn bg-blue-500 text-white py-2 px-4 rounded">View Set</a>
+                    <a href=`${getSetsByTheme(Technic).img_url}` class="btn bg-blue-500 text-white py-2 px-4 rounded">View Set</a>
                 </div>
                 <div class="card bg-white p-6 rounded-lg shadow-md">
                     <img src="your_img_url2.jpg" alt="Lego Set 2" class="w-full h-64 object-cover mb-4 rounded">
@@ -59,8 +56,10 @@
                 </div>
             </section>
         </main>
-        <footer>
-
+        <footer class="bg-gray-800 text-white p-4 mt-4">
+            <div class="container mx-auto text-center">
+                <p>&copy; 2023 Lego Collection. All rights reserved.</p>
+            </div>
         </footer>
     </body>
 </html>

@@ -1,5 +1,5 @@
 /********************************************************************************
-* WEB322 – Assignment 02
+* WEB322 – Assignment 03
 * 
 * I declare that this assignment is my own work in accordance with Seneca's
 * Academic Integrity Policy:
@@ -10,7 +10,7 @@
 *
 ********************************************************************************/
 
-const legoData = require("./modules/legoSets");
+const legoData = require("./public/js/legoSets");
 const express = require('express'); 
 const path = require('path');
 const app = express(); 
@@ -50,7 +50,7 @@ app.get('/lego/sets/', (req, res) => {
     {
         legoData.getSetsByTheme(theme)
             .then(data => {
-                res.send(data);
+                res.json(data);
             })
             .catch((err) => {
                 res.status(404).send(err.message);
@@ -75,3 +75,10 @@ app.get('/lego/sets/:num?', (req, res) => {
             res.send(err.message);
         });
 });
+app.get('*', (req,res) => {
+    try {
+        res.status(404).sendFile(path.join(__dirname, '/views/404.html'));
+    } catch (err) {
+        res.status(404).send(err.message);
+    }
+})

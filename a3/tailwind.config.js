@@ -3,7 +3,6 @@ module.exports = {
   purge: {
     content: [
       './views/**/*.html',
-      // you might also need to watch your js files if you use tailwind classes in them
       './src/**/*.js',
     ]
   },
@@ -11,10 +10,15 @@ module.exports = {
     themes: ['cupcake'],
   },
   theme: {
-    extend: {},
+    extend: {
+      maxWidth: {
+        'custom-width': '1000px',
+      },
+    },
   },
   plugins: [
     require('@tailwindcss/typography'),
+    require('@tailwindcss/aspect-ratio'),
     require('daisyui'),
   ],
 }
