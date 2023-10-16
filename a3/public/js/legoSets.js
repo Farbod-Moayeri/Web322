@@ -32,20 +32,18 @@ const getAllSets = () => {
 }
 
 const getSetByNum = (setNum) => {
-    return new Promise((resolve,reject) => {
-        if (typeof setNum !== 'string')
-        {
+    return new Promise((resolve, reject) => {
+        if (typeof setNum !== 'string') {
             setNum = setNum.toString();
         }
-        const found = sets.find(current => current.theme_id === setNum);
-        if(found) {
+        const found = sets.find(current => current.set_num === setNum);
+        if (found) {
             resolve(found);
-        }
-        else {
+        } else {
             reject("Unable to find requested set");
         }
     });
-}
+};
 
 const getSetsByTheme = (theme) => {
     return new Promise((resolve, reject) => {

@@ -1,14 +1,16 @@
-/********************************************************************************
-* WEB322 – Assignment 03
+/******************************************************************************** 
+*  WEB322 – Assignment 03 
+*  
+*  I declare that this assignment is my own work in accordance with Seneca's 
+*  Academic Integrity Policy: 
+*  
+*  https://www.senecacollege.ca/about/policies/academic-integrity-policy.html 
+*  
+*  Name: Farbod Moayeri Student ID: 134395227 Date: 2023-10-15
 * 
-* I declare that this assignment is my own work in accordance with Seneca's
-* Academic Integrity Policy:
+*  Published URL: ___________________________________________________________ 
 * 
-* https://www.senecacollege.ca/about/policies/academic-integrity-policy.html
-* 
-* Name: Farbod Moayeri Student ID: 134395227 Date: 2023-09-26
-*
-********************************************************************************/
+********************************************************************************/ 
 
 const legoData = require("./public/js/legoSets");
 const express = require('express'); 
