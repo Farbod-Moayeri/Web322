@@ -1,0 +1,23 @@
+{
+  "name": "a3",
+  "version": "1.0.0",
+  "description": "Assignment 3",
+  "main": "server.js",
+  "scripts": {
+    "tw:build": "tailwindcss build -i ./public/css/tailwind.css -o ./public/css/main.css",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Farbod Moayeri",
+  "license": "ISC",
+  "dependencies": {
+    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tailwindcss/typography": "^0.5.10",
+    "daisyui": "^3.9.2",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.3"
+  }
+}
