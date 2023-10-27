@@ -4,26 +4,26 @@
         <meta charset="utf-8">
         <meta name="author" content="Farbod Moayeri">
         <link rel="stylesheet" href="/css/main.css" />
-        <title>About</title>
+        <title>404 Page</title>
     </head>
     <body class="grid grid-rows-[auto,1fr,auto] min-h-screen">
-        <header>
-            <%- include('partials/navbar', {page: '/ '}) %>
-        </header>
+      <header>
+          <%- include('partials/navbar', {page: '/ '}) %>
+      </header>
 
-        <main>    
-            <div class="hero min-h-screen bg-base-200">
-                <div class="hero-content flex-col lg:flex-row">
-                  <img src="/images/404Page.jpg" class="max-w-sm rounded-lg" />
-                  <div>
-                    <h1 class="text-5xl font-bold">404...That's an error.</h1>
-                    <p class="py-6">The requested page could not be found.</p>
-                  </div>
-                </div>
+      <main>    
+        <div class="hero min-h-screen bg-base-200">
+            <div class="hero-content flex-col lg:flex-row">
+              <img src="/images/404Page.jpg" class="max-w-sm rounded-lg" />
+              <div>
+                <h1 class="text-5xl font-bold">404...That's an error.</h1>
+                <p class="py-6">The requested page could not be found.</p>
               </div>
-        </main>
+            </div>
+          </div>
+      </main>
 
-        <%- include('partials/footer') %>
+      <%- include('partials/footer') %>
         
     </body>
 </html>

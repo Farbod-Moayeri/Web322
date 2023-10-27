@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="Farbod Moayeri">
+        <link rel="stylesheet" href="/css/main.css" />
+        <title>Sets</title>
+    </head>
+    <body class="grid grid-rows-[auto,1fr,auto] min-h-screen">
+        <header>
+            <%- include('partials/navbar', {page: '/ '}) %>
+        </header>
+
+        <main>
+            <div class="container mx-auto p-4">
+                <div class="hero bg-blue-500 text-white rounded-lg p-10 text-center mb-10">
+                    <div class="hero-content text-center">
+                        <div class="max-w-md">
+                            <h1 class="text-4xl mb-4">Collection</h1>
+                            <p class="py-5">doot doot
+                                <a href="/lego/sets?theme="></a>
+                            </p>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <div class="overflow-x-auto overflow-y-hidden">
+                    <table class="table table-zebra">
+                        <tbody>
+                            <% sets.forEach(lego=>{ %>
+                            <tr>
+                                <td>
+                                    <div class="avatar">
+                                    <div class="w-32 h-32 rouded-lg" url("'<%= lego.img_url %>'");></div>
+                                    </div>
+                                </td>
+                                <td>
+                                    "<%= lego.name %> ~ " <a href="/lego/sets?theme='<%= lego.theme %>'" class="btn mt-2 btn-xs"><%= lego.theme %></a>
+                                </td>
+                                <td>
+                                    <p class="font-bold">Year: </p>
+                                    "<%= lego.year%> -"
+                                    <p class="font-bold">Parts: </p>
+                                    "<%= lego.num_parts%> -"
+                                </td>
+                                <td>
+                                    <a href="/lego/sets/'<%= lego.set_num %>'">Details</a>
+                                </td>
+                            </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+
+        <%- include('partials/footer') %>
+        
+    </body>
+</html>

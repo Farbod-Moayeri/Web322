@@ -53,7 +53,7 @@ app.get('/lego/sets/', (req, res) => {
     {
         legoData.getSetsByTheme(theme)
             .then(data => {
-                res.json(data);
+                res.render("sets", {sets: data})
             })
             .catch((err) => {
                 res.status(404).send(err.message);
@@ -61,7 +61,7 @@ app.get('/lego/sets/', (req, res) => {
     } else {
         legoData.getAllSets()
         .then(data => {
-            res.send(data);
+            res.render("sets", {sets: data});
         })
         .catch((err) => {
             res.status(404).send(err.message);
