@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
+        <meta charset="UTF-8">
         <meta name="author" content="Farbod Moayeri">
         <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/custom.css">
         <title>Sets</title>
     </head>
     <body class="grid grid-rows-[auto,1fr,auto] min-h-screen">
@@ -25,27 +26,27 @@
                     
                 </div>
                 
-                <div class="overflow-x-auto overflow-y-hidden">
+                <div id="legoList" class="overflow-x-auto overflow-y-hidden">
                     <table class="table table-zebra">
                         <tbody>
                             <% sets.forEach(lego=>{ %>
-                            <tr>
+                            <tr class="legoRow">
                                 <td>
-                                    <div class="avatar">
-                                    <div class="w-32 h-32 rouded-lg" url("'<%= lego.img_url %>'");></div>
+                                    <div class="avatar relative">
+                                        <!--<div class="w-32 h-32 rounded-lg" style="background-image: url('<%- lego.img_url %>');"></div>-->
+                                        <img class="w-32 h-32 object-cover" src="<%- lego.img_url %>" alt="Lego Box Image">
                                     </div>
                                 </td>
                                 <td>
-                                    "<%= lego.name %> ~ " <a href="/lego/sets?theme='<%= lego.theme %>'" class="btn mt-2 btn-xs"><%= lego.theme %></a>
+                                    <%= lego.name %> ~ <a href="/lego/sets?theme=<%= lego.theme %>" class="btn mt-2 btn-xs"><%= lego.theme %></a>
                                 </td>
                                 <td>
-                                    <p class="font-bold">Year: </p>
-                                    "<%= lego.year%> -"
-                                    <p class="font-bold">Parts: </p>
-                                    "<%= lego.num_parts%> -"
+                                    <p class="font-bold">Year: <%= lego.year%> - </p>
+                                    <p class="font-bold">Parts: <%= lego.num_parts%></p>
+                                    
                                 </td>
                                 <td>
-                                    <a href="/lego/sets/'<%= lego.set_num %>'">Details</a>
+                                    <a href="/lego/sets/<%= lego.set_num %>">Details</a>
                                 </td>
                             </tr>
                             <% }) %>

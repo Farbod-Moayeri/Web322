@@ -1,0 +1,14 @@
+
+.legoList {
+    display: grid;
+    place-items: center;
+    height: 100%;
+    text-align: center;
+    align-items: center;
+}
+
+.legoRow {
+    display: flex;
+    max-width: 100%;
+    max-height: 200px;
+}
