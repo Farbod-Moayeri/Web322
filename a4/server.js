@@ -56,7 +56,7 @@ app.get('/lego/sets/', (req, res) => {
                 res.render("sets", {sets: data})
             })
             .catch((err) => {
-                res.status(404).send(err.message);
+                res.status(404).render("404", {message: "Unable to find requested sets."});
             })
     } else {
         legoData.getAllSets()
@@ -72,15 +72,15 @@ app.get('/lego/sets/:num?', (req, res) => {
     const num = req.params.num
     legoData.getSetByNum(num)
         .then(data => {
-            res.send(data);
+            res.render("set", {set: data});
         })
         .catch((err) => {
-            res.send(err.message);
+            res.status(404).render("404", {message: "Unable to find requested set."});
         });
 });
 app.get('*', (req,res) => {
     try {
-        res.status(404).render("404");
+        res.status(404).render("404", {message: "I'm sorry, we're unable to find what you're looking for"});
     } catch (err) {
         res.status(404).send(err.message);
     }

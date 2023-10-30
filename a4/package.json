@@ -1,11 +1,12 @@
 {
-  "name": "a3",
+  "name": "a4",
   "version": "1.0.0",
   "description": "Assignment 3",
   "main": "server.js",
   "scripts": {
     "tw:build": "tailwindcss build -i ./public/css/tailwind.css -o ./public/css/main.css",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "prestart": "npm run tw:build", 
     "start": "nodemon -e js,ejs,html,json,css server.js"
   },
   "author": "Farbod Moayeri",
