@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="Farbod Moayeri">
+        <link rel="stylesheet" href="/css/main.css" />
+        <title>Lego Collection</title>
+    </head>
+
+    <body class="grid grid-rows-[auto,1fr,auto] min-h-screen">
+        <header>
+            <%- include('partials/navbar', {page: '/'}) %>
+        </header>
+
+        <main>    
+            <section class="hero bg-blue-500 text-white p-10 text-center">
+                <h1 class="text-4xl mb-4">Explore Our Lego Collection</h1>
+            </section>
+
+            <section class="grid grid-cols-1 md:grid-cols-3 gap-8 p-10">
+                <div class="card bg-white p-6 rounded-lg shadow-md">
+                    <img src="/images/lego/033-1.jpg" alt="Lego Set 1" class="w-full h-64 object-cover mb-4 rounded"/>
+                    <h2 class="text-2xl mb-2">Farm Animals</h2>
+                    <p class="mb-4">Cow go moo, dog go bark, click Logo Collection to go to main page.</p>
+                    <a href="/lego/sets/033-1" class="btn bg-blue-500 text-white py-2 px-4 rounded">View Set</a>
+                </div>
+                <div class="card bg-white p-6 rounded-lg shadow-md">
+                    <img src="/images/lego/042-1.jpg" alt="Lego Set 2" class="w-full h-64 object-cover mb-4 rounded"/>
+                    <h2 class="text-2xl mb-2">Jumbo Brick Pull Toy</h2>
+                    <p class="mb-4">Big Bricks for Big Boys.</p>
+                    <a href="/lego/sets/042-1" class="btn bg-blue-500 text-white py-2 px-4 rounded">View Set</a>
+                </div>
+                <div class="card bg-white p-6 rounded-lg shadow-md">
+                    <img src="/images/lego/0241357594-1.jpg" alt="Lego Set 3" class="w-full h-64 object-cover mb-4 rounded"/>
+                    <h2 class="text-2xl mb-2">Star Wars: Build Your Own Adventure: Galactic Mission</h2>
+                    <p class="mb-4">Ever wonder how it feels like to attack the death star? Nows your chance to find out.</p>
+                    <a href="/lego/sets/0241357594-1" class="btn bg-blue-500 text-white py-2 px-4 rounded">View Set</a>
+                </div>
+            </section>
+        </main>
+
+        <%- include('partials/footer') %>
+        
+    </body>
+</html>

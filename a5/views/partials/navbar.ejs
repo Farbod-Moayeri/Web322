@@ -1,0 +1,16 @@
+<div class="bg-gray-800 text-white p-4">
+    <nav class="container mx-auto flex justify-between">
+        <a href="/" class="text-2xl font-bold">Lego Collection</a>
+        <div class="space-x-4">
+            <button class="btn transform transition duration-150 ease-in-out active:scale-95 border border-transparent hover:border-blue-500">
+                <a href="/lego/sets" class="<%= (page == '/lego/sets') ? 'text-blue-500 border-blue-500' : 'text-black' %>">View Collection</a>
+            </button>
+            <button class="btn transform transition duration-150 ease-in-out active:scale-95 border border-transparent hover:border-blue-500">
+                <a href="/about" class="<%= (page == '/about') ? 'text-blue-500 border-blue-500' : 'text-black' %>">About</a>
+            </button>
+            <button class="btn transform transition duration-150 ease-in-out active:scale-95 border border-transparent hover:border-blue-500">
+                <a href="/lego/addSet" class="<%= (page == '/lego/addSet') ? 'text-blue-500 border-blue-500' : 'text-black' %>">Add to Collection</a>
+            </button>
+        </div>
+    </nav>
+</div>

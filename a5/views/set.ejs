@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="Farbod Moayeri">
+        <link rel="stylesheet" href="/css/main.css" />
+        <title>Set Info</title>
+    </head>
+    <body class="grid grid-rows-[auto,1fr,auto] min-h-screen">
+        <header>
+            <%- include('partials/navbar', {page: ''}) %>
+        </header>
+        <main>
+            <div class="container mx-auto p-4">
+                <div class="hero bg-blue-500 text-white p-10 text-center mb-10">
+                    <div class="hero-content text-center">
+                        <div class="max-w-md">
+                            <h1 class="text-4xl mb-4"><%= set.name%></h1>
+                            <p class="mb-4">Below you will find information about the set: <%= set.name%></p>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <img class="w-full rounded-lg" src="<%= set.img_url%>" alt="Set Image">
+                    </div>
+                    <div>
+                        <p><span class="font-bold">Set Name:</span> <%= set.name %></p>
+                        <br>
+                        <p><span class="font-bold">Year Released:</span> <%= set.year %></p>
+                        <br>
+                        <p><span class="font-bold">Theme:</span> <%= set.theme.name %></p>
+                        <br>
+                        <p><span class="font-bold">Number of Parts:</span> <%= set.num_parts %></p>
+                        <a href="/lego/editSet/<%= set.set_num %>" class="btn btn-success">Edit</a>
+                        <br>
+                        <br>
+                        <p id="quote" class="font-bold"></p>
+                        <p id="author" style="font-style: italic;"></p>
+                        <br>
+                        <a class="btn btn-primary" href="#" onclick="history.back(); return false;">RETURN</a>
+                    </div>
+                </div>
+                
+                
+            </div>
+            
+        </main>
+
+        <%- include('partials/footer') %>
+        
+    </body>
+    <script>
+        document.addEventListener("DOMContentLoaded", ()=>{
+            const quote = document.getElementById("quote");
+            const author = document.getElementById("author")
+            fetch('https://quotable.io/random', {
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    quote.textContent = `"${data.content}"`;
+                    author.textContent = `- ${data.author}`;
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        });
+    </script>
+    
+</html>
