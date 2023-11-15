@@ -1,12 +1,12 @@
 /******************************************************************************** 
-*  WEB322 – Assignment 03 
+*  WEB322 – Assignment 05
 *  
 *  I declare that this assignment is my own work in accordance with Seneca's 
 *  Academic Integrity Policy: 
 *  
 *  https://www.senecacollege.ca/about/policies/academic-integrity-policy.html 
 *  
-*  Name: Farbod Moayeri Student ID: 134395227 Date: 2023-10-30
+*  Name: Farbod Moayeri Student ID: 134395227 Date: 2023-11-17
 * 
 *  Published URL: https://crazy-waders-ant.cyclic.app/
 * 
@@ -14,12 +14,11 @@
 
 const legoData = require("./public/js/legoSets");
 const express = require('express'); 
-const path = require('path');
 const app = express(); 
 const HTTP_PORT = process.env.PORT || 8080; 
 
 legoData.initialize().then(() => {
-    app.listen(HTTP_PORT, () => {
+    app.listen(HTTP_PORT, '0.0.0.0', () => {
         console.log(`Server started on port ${HTTP_PORT}`);
     });
 }).catch(err => {
@@ -38,8 +37,8 @@ app.get(['/', '/home', '/home.html'], (req, res) => {
     }
     
 });
-
-app.get(['/', '/lego/addSet', '/lego/addSet.html'], (req, res) => {
+// ----------------------------------------------------------------------------------------------------------------
+app.get(['/lego/addSet', '/lego/addSet.html'], (req, res) => {
     legoData.getAllThemes()
     .then(themes => {
         res.render("addSet", {themes});
@@ -58,7 +57,7 @@ app.post('/lego/addSet', (req, res) => {
         res.render("500", { message: `I'm sorry, but we have encountered the following error: ${err}` });
     });
 });
-
+// ------------------------------------------------------------------------------------------------------
 app.get('/lego/editSet/:num', (req, res) => {
     const setNum = req.params.num;
     
@@ -85,7 +84,19 @@ app.post('/lego/editSet', (req, res) => {
         res.render("500", { message: `I'm sorry, but we have encountered the following error: ${err}` });
     });
 });
+// ----------------------------------------------------------------------------------------------------
+app.post('/lego/deleteSet/:num', (req,res) => {
+    const setNum = req.params.num;
+    legoData.deleteSet(setNum)
+        .then(() => {
+            res.redirect('/lego/sets');
+        })
+        .catch((err) => {
+            res.render("500", {message: `I'm sorry, but we have encountered the following error: ${err}`});
+        });
 
+});
+// ---------------------------------------------------------------------------------------------------
 app.get(['/about', '/about.html'], (req, res) => {
     try {
         res.render("about");
