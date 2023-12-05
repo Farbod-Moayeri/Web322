@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="Farbod Moayeri">
+        <link rel="stylesheet" href="/css/main.css" />
+        <title>Sets</title>
+    </head>
+    <body class="grid grid-rows-[auto,1fr,auto] min-h-screen">
+        <header>
+            <%- include('partials/navbar', {page: '/lego/sets'}) %>
+        </header>
+
+        <main>
+            <div class="container mx-auto p-4">
+                <div class="hero bg-blue-500 text-white rounded-lg p-10 text-center mb-10">
+                    <div class="hero-content text-center">
+                        <div class="max-w-md">
+                            <h1 class="text-4xl mb-4">Collection</h1>
+                            <p class="py-5">
+                                Browse the entire collection. Click the theme to filter by themes such as: 
+                            </p>
+                            <Button class="bg-white text-black rounded-lg px-4 py-2 transform transition duration-150 ease-in-out active:scale-95 border border-transparent hover:border-blue-500"><a href="/lego/sets?theme=Technic">Technic</a></Button> 
+                            <Button class="bg-white text-black rounded-lg px-4 py-2 transform transition duration-150 ease-in-out active:scale-95 border border-transparent hover:border-blue-500"><a href="/lego/sets?theme=Classic Town">Classic Town</a></Button> 
+                            <Button class="bg-white text-black rounded-lg px-4 py-2 transform transition duration-150 ease-in-out active:scale-95 border border-transparent hover:border-blue-500"><a href="/lego/sets?theme=Supplemental">Supplemental</a></Button>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <div class="overflow-x-auto overflow-y-hidden">
+                    <table class="table table-zebra">
+                        <tbody>
+                            <% sets.forEach(lego=>{ %>
+                            <tr class="legoRow">
+                                <td>
+                                    <div class="avatar relative w-32 h-32 rounded-lg overflow-hidden">
+                                        <img class="w-full h-full object-cover" src="<%- lego.img_url %>" alt="Lego Box Image" onerror="this.src='/images/404Page.jpg'">
+                                    </div>
+                                </td>
+                                <td>
+                                    <%= lego.name %> ~ <a href="/lego/sets?theme=<%= lego.Theme.name %>" class="btn mt-2 btn-xs"><%= lego.Theme.name %></a>
+                                </td>
+                                <td>
+                                    <p class="font-bold">Year: <%= lego.year%> - </p>
+                                    <p class="font-bold">Parts: <%= lego.num_parts%></p>
+                                    
+                                </td>
+                                <td>
+                                    <button class="btn transform transition duration-150 ease-in-out active:scale-95 border border-transparent hover:border-blue-500"><a href="/lego/sets/<%= lego.set_num %>">Details</a></button> 
+                                </td>
+                            </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+
+        <%- include('partials/footer') %>
+        
+    </body>
+</html>
