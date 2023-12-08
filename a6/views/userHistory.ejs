@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Farbod Moayeri">
+    <link rel="stylesheet" href="/css/main.css" />
+    <title>User History</title>
+</head>
+<body>
+    <header>
+        <%- include('partials/navbar', {page: '/userHistory' }) %>
+    </header>
+
+    <main>
+        <div class="container mx-auto p-4">
+            <div class="flex justify-center">
+                <div class="w-full max-w-md">
+                    <div class="bg-blue-500 text-white p-10 text-center mb-10 rounded-lg">
+                        <h1 class="text-4xl mb-4"><%- session.user.userName %></h1>
+                        <p>User History: <%- session.user.email %></p>
+                    </div>
+            </div>
+
+            <div class="overflow-x-auto overflow-y-hidden">
+                <table class="table table-zebra">
+                    <thead>
+                        <tr>
+                            <th>Login Date/Time</th>
+                            <th>Client Information</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% session.user.loginHistory.forEach(history=>{ %>
+                        <tr class="loginHistoryRow">
+                            
+                            <td>
+                                <p class="font-bold">Year: <%= history.dateTime%> - </p>
+                            </td>
+
+                            <td>
+                                <p class="font-bold">Parts: <%= history.userAgent%></p>
+                            </td>
+                            
+                        </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <%- include('partials/footer') %>
+</body>
+</html>

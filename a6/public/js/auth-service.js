@@ -3,8 +3,6 @@ require('dotenv').config();
 
 let Schema = mongoose.Schema;
 
-//mongoose.connect('mongodb+srv://farbodmoayeri4:JNbL7f4EI0j0Tz4B@cluster0.c5uuj7u.mongodb.net/?retryWrites=true&w=majority');
-
 let userSchema = new Schema({
     userName: {type: String, unique: true},
     password: String,
@@ -12,7 +10,7 @@ let userSchema = new Schema({
     loginHistory: [{dateTime: Date, userAgent: String}],
   });
   
-let User; //= mongoose.model('Users', userSchema);
+let User;
 
 const initialize = () => {
     return new Promise ((resolve, reject ) => {
