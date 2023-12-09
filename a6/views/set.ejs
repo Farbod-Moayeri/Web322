@@ -35,12 +35,15 @@
                         <br>
                         <p><span class="font-bold">Number of Parts:</span> <%= set.num_parts %></p>
                         <br>
-                        <a href="/lego/editSet/<%= set.set_num %>" class="btn btn-success">Edit</a>
+                        <% if(session.user){ %> 
+                            <a href="/lego/editSet/<%= set.set_num %>" class="btn btn-success">Edit</a>
+                        <% } %>
                         <br>
                         <br>
                         <p id="quote" class="font-bold"></p>
                         <p id="author" style="font-style: italic;"></p>
                         <br>
+                        
                         <a class="btn btn-primary" href="#" onclick="history.back(); return false;">RETURN</a>
                     </div>
                 </div>

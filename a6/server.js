@@ -1,12 +1,12 @@
 /******************************************************************************** 
-*  WEB322 – Assignment 05
+*  WEB322 – Assignment 06
 *  
 *  I declare that this assignment is my own work in accordance with Seneca's 
 *  Academic Integrity Policy: 
 *  
 *  https://www.senecacollege.ca/about/policies/academic-integrity-policy.html 
 *  
-*  Name: Farbod Moayeri Student ID: 134395227 Date: 2023-11-17
+*  Name: Farbod Moayeri Student ID: 134395227 Date: 2023-12-08
 * 
 *  Published URL: https://crazy-waders-ant.cyclic.app/
 * 
@@ -34,10 +34,10 @@ app.use(express.static('public'));
 
 app.use(
     clientSessions({
-      cookieName: 'session', // this is the object name that will be added to 'req'
-      secret: 'o6LjQ5EVNC28ZgK64hDELM18ScpFQr', // this should be a long un-guessable string.
-      duration: 2 * 60 * 1000, // duration of the session in milliseconds (2 minutes)
-      activeDuration: 1000 * 60, // the session will be extended by this many ms each request (1 minute)
+      cookieName: 'session', 
+      secret: 'o6LjQ5EVNC28ZgK64hDELM18ScpFQr', 
+      duration: 2 * 60 * 1000, 
+      activeDuration: 1000 * 60, 
     })
 );
 
@@ -66,15 +66,16 @@ app.get(['/', '/home', '/home.html'], (req, res) => {
 });
 // ---------------------------------------------------------------------------------------------------------------
 app.get('/login', (req, res) => {
-    res.render("login");
+    res.render("login", { errorMessage: null });
 });
+
 app.post('/login', (req, res) => {
     req.body.userAgent = req.get('User-Agent');
 
     authData.checkUser(req.body)
     .then((user) => {
         req.session.user = {
-            userName: user.UserName,
+            userName: user.userName,
             email: user.email,
             loginHistory: user.loginHistory,
         }
@@ -86,15 +87,15 @@ app.post('/login', (req, res) => {
 });
 // ---------------------------------------------------------------------------------------------------------------
 app.get('/register', (req,res) => {
-    res.render("register");
+    res.render("register", { errorMessage: null , successMessage: null});
 });
 app.post('/register', (req, res) => {
     authData.registerUser(req.body)
     .then(() => {
-        res.render("register", {successMessage: "User created"});
+        res.render("register", {successMessage: "User created", errorMessage: null});
     })
     .catch((err) => {
-        res.render("register", {errorMessage: err, userName:req.body.userName});
+        res.render("register", {errorMessage: err, userName:req.body.userName, successMessage: null});
     });
 });
 // ----------------------------------------------------------------------------------------------------------------

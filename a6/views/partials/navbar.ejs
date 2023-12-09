@@ -1,7 +1,7 @@
 <div class="bg-gray-800 text-white p-4">
     <nav class="container mx-auto flex justify-between">
         <a href="/" class="text-2xl font-bold">Lego Collection</a>
-        <div class="space-x-4">
+        <div class="flex items-center space-x-4">
             <button class="btn transform transition duration-150 ease-in-out active:scale-95 border border-transparent hover:border-blue-500">
                 <a href="/lego/sets" class="<%= (page == '/lego/sets') ? 'text-blue-500 border-blue-500' : 'text-black' %>">View Collection</a>
             </button>
@@ -9,34 +9,44 @@
                 <a href="/about" class="<%= (page == '/about') ? 'text-blue-500 border-blue-500' : 'text-black' %>">About</a>
             </button>
             <% if(session.user) { %>
-                <li>
-                    <details>
-                        <summary>Account: <%= session.user.userName %></summary>
-                        <ul class="p-2 right-0">
-                            <!-- <li><a class="<%= (page == "/lego/addSet") ? 'active' : '' %>" href="/lego/addSet">Add to Collection</a></li> -->
-                            <button class="btn transform transition duration-150 ease-in-out active:scale-95 border border-transparent hover:border-blue-500">
-                                <a href="/lego/addSet" class="<%= (page == '/lego/addSet') ? 'text-blue-500 border-blue-500' : 'text-black' %>">Add to Collection</a>
-                            <!--fix below-->    
-                            <li><a class="<%= (page == "/userHistory") ? 'active' : '' %>" href="/userHistory">User History</a></li>
-                            <li><a href="/logout">Log Out</a></li>
-                        </ul>
-                    </details>
-                </li>
+                <div class="relative">
+                    <button onclick="toggleDropdown()" class="btn transform transition duration-150 ease-in-out active:scale-95 border border-transparent hover:border-blue-500 group">
+                        Account: <%= session.user.username %>
+                        <svg class="inline-block ml-2 w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                    <ul id="accountDropdown" class="absolute hidden bg-white text-black mt-1 p-2 rounded shadow-md z-50">
+                        <li class="hover:bg-gray-200 rounded">
+                            <a href="/lego/addSet" class="block px-4 py-2">Add to Collection</a>
+                        </li>
+                        <li class="hover:bg-gray-200 rounded">
+                            <a href="/userHistory" class="block px-4 py-2">User History</a>
+                        </li>
+                        <li class="hover:bg-gray-200 rounded">
+                            <a href="/logout" class="block px-4 py-2">Log Out</a>
+                        </li>
+                    </ul>
+                </div>
             <% } else { %>
-                <li>
-                    <details>
-                        <summary>Account</summary>
-                            <ul class="p-2 right-0">
-                                <li><a class="<%= (page == "/login") ? 'active' : '' %>" href="/login">Login</a></li>
-                                <li><a class="<%= (page == "/register") ? 'active' : '' %>" href="/register">Register</a></li>
-                            </ul>
-                    </details>
-                </li>
+                <button class="btn transform transition duration-150 ease-in-out active:scale-95 border border-transparent hover:border-blue-500">
+                    <a href="/login" class="<%= (page == '/login') ? 'text-blue-500 border-blue-500' : 'text-black' %>">Login</a>
+                </button>
+                <button class="btn transform transition duration-150 ease-in-out active:scale-95 border border-transparent hover:border-blue-500">
+                    <a href="/register" class="<%= (page == '/register') ? 'text-blue-500 border-blue-500' : 'text-black' %>">Register</a>
+                </button>
             <% } %>
-
-            <!-- <button class="btn transform transition duration-150 ease-in-out active:scale-95 border border-transparent hover:border-blue-500">
-                <a href="/lego/addSet" class="<%= (page == '/lego/addSet') ? 'text-blue-500 border-blue-500' : 'text-black' %>">Add to Collection</a>
-            </button> -->
         </div>
     </nav>
 </div>
+
+<script>
+    function toggleDropdown() {
+        var dropdown = document.getElementById('accountDropdown');
+        if (dropdown.classList.contains('hidden')) {
+            dropdown.classList.remove('hidden');
+        } else {
+            dropdown.classList.add('hidden');
+        }
+    }
+</script>
